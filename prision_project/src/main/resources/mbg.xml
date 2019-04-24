@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3Simple">
+
+        <!--数据库连接信息-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://182.254.244.35:3306/zqg_prision"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+
+
+        <!--默认-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--javaBean指定生成位置-->
+        <javaModelGenerator targetPackage="club.zqg.prision.domain" targetProject=".\src\main\java\club\zqg\prision">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--指定map映射文件生成的位置-->
+        <sqlMapGenerator targetPackage="mapper" targetProject=".\src\main\resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--指定dao接口生成的位置，j即为mapper接口-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="club.zqg.prision.dao" targetProject=".\src\main\java\club\zqg\prision">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--指定表-->
+        <table schema="DB2ADMIN" tableName="prision_police" domainObjectName="PrisionPolice"></table>
+        <table schema="DB2ADMIN" tableName="prision_prisioner" domainObjectName="Prisioner"></table>
+        <table schema="DB2ADMIN" tableName="prision_area" domainObjectName="PrisionArea"></table>
+        <table schema="DB2ADMIN" tableName="prision_news" domainObjectName="PrisionNews"></table>
+        <table schema="DB2ADMIN" tableName="prision_chief" domainObjectName="PrisionChief"></table>
+        <table schema="DB2ADMIN" tableName="prision_rank" domainObjectName="PrisionRank"></table>
+        <table schema="DB2ADMIN" tableName="danger_level" domainObjectName="Dangerlevel"></table>
+
+
+
+    </context>
+</generatorConfiguration>
