@@ -1,3 +1,5 @@
+<%@page language="java" pageEncoding="UTF-8" contentType="text/html;UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="c"    uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,20 +8,20 @@
 	<link rel="icon" type="image/png" href="../assets/img/favicon.png" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Material Dashboard by Creative Tim</title>
+	<title>犯人列表</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
 
     <!-- Bootstrap core CSS     -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="${APP_PATH}/assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!--  Material Dashboard CSS    -->
-    <link href="../assets/css/material-dashboard.css" rel="stylesheet"/>
+    <link href="${APP_PATH}/assets/css/material-dashboard.css" rel="stylesheet"/>
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="../assets/css/demo.css" rel="stylesheet" />
+    <link href="${APP_PATH}/assets/css/demo.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -33,17 +35,16 @@
 	<div class="wrapper">
 	    <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
 			<!--
-	        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-		    Tip 2: you can also add an image using data-image tag
+		        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
-			-->
+		        Tip 2: you can also add an image using data-image tag
+		    -->
 
 			<div class="logo">
 				<a href="http://www.creative-tim.com" class="simple-text">
 					Creative Tim
 				</a>
 			</div>
-
 
 	    	<div class="sidebar-wrapper">
 				<ul class="nav">
@@ -53,14 +54,14 @@
 	                        <p>Dashboard</p>
 	                    </a>
 	                </li>
-	                <li>
-	                    <a href="user.html">
+	                <li class="active">
+	                    <a href="user.jsp">
 	                        <i class="material-icons">person</i>
 	                        <p>User Profile</p>
 	                    </a>
 	                </li>
-	                <li class="active">
-	                    <a href="table.html">
+	                <li>
+	                    <a href="table.jsp">
 	                        <i class="material-icons">content_paste</i>
 	                        <p>Table List</p>
 	                    </a>
@@ -97,7 +98,7 @@
                     </li>
 	            </ul>
 	    	</div>
-		</div>
+	    </div>
 
 	    <div class="main-panel">
 			<nav class="navbar navbar-transparent navbar-absolute">
@@ -109,7 +110,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">Table List</a>
+						<a class="navbar-brand" href="#">Profile</a>
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
@@ -157,127 +158,116 @@
 	        <div class="content">
 	            <div class="container-fluid">
 	                <div class="row">
-	                    <div class="col-md-12">
+	                    <div class="col-md-8">
 	                        <div class="card">
 	                            <div class="card-header" data-background-color="purple">
-	                                <h4 class="title">Simple Table</h4>
-	                                <p class="category">Here is a subtitle for this table</p>
+	                                <h4 class="title">Edit Profile</h4>
+									<p class="category">Complete your profile</p>
 	                            </div>
-	                            <div class="card-content table-responsive">
-	                                <table class="table">
-	                                    <thead class="text-primary">
-	                                    	<th>Name</th>
-	                                    	<th>Country</th>
-	                                    	<th>City</th>
-											<th>Salary</th>
-	                                    </thead>
-	                                    <tbody>
-	                                        <tr>
-	                                        	<td>Dakota Rice</td>
-	                                        	<td>Niger</td>
-	                                        	<td>Oud-Turnhout</td>
-												<td class="text-primary">$36,738</td>
-	                                        </tr>
-	                                        <tr>
-	                                        	<td>Minerva Hooper</td>
-	                                        	<td>Curaçao</td>
-	                                        	<td>Sinaai-Waas</td>
-												<td class="text-primary">$23,789</td>
-	                                        </tr>
-	                                        <tr>
-	                                        	<td>Sage Rodriguez</td>
-	                                        	<td>Netherlands</td>
-	                                        	<td>Baileux</td>
-												<td class="text-primary">$56,142</td>
-	                                        </tr>
-	                                        <tr>
-	                                        	<td>Philip Chaney</td>
-	                                        	<td>Korea, South</td>
-	                                        	<td>Overland Park</td>
-												<td class="text-primary">$38,735</td>
-	                                        </tr>
-	                                        <tr>
-	                                        	<td>Doris Greene</td>
-	                                        	<td>Malawi</td>
-	                                        	<td>Feldkirchen in Kärnten</td>
-												<td class="text-primary">$63,542</td>
-	                                        </tr>
-	                                        <tr>
-	                                        	<td>Mason Porter</td>
-	                                        	<td>Chile</td>
-	                                        	<td>Gloucester</td>
-												<td class="text-primary">$78,615</td>
-	                                        </tr>
-	                                    </tbody>
-	                                </table>
+	                            <div class="card-content">
+	                                <form>
+	                                    <div class="row">
+	                                        <div class="col-md-5">
+												<div class="form-group label-floating">
+													<label class="control-label">Company (disabled)</label>
+													<input type="text" class="form-control" disabled>
+												</div>
+	                                        </div>
+	                                        <div class="col-md-3">
+												<div class="form-group label-floating">
+													<label class="control-label">Username</label>
+													<input type="text" class="form-control" >
+												</div>
+	                                        </div>
+	                                        <div class="col-md-4">
+												<div class="form-group label-floating">
+													<label class="control-label">Email address</label>
+													<input type="email" class="form-control" >
+												</div>
+	                                        </div>
+	                                    </div>
 
+	                                    <div class="row">
+	                                        <div class="col-md-6">
+												<div class="form-group label-floating">
+													<label class="control-label">Fist Name</label>
+													<input type="text" class="form-control" >
+												</div>
+	                                        </div>
+	                                        <div class="col-md-6">
+												<div class="form-group label-floating">
+													<label class="control-label">Last Name</label>
+													<input type="text" class="form-control" >
+												</div>
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="row">
+	                                        <div class="col-md-12">
+												<div class="form-group label-floating">
+													<label class="control-label">Adress</label>
+													<input type="text" class="form-control" >
+												</div>
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="row">
+	                                        <div class="col-md-4">
+												<div class="form-group label-floating">
+													<label class="control-label">City</label>
+													<input type="text" class="form-control" >
+												</div>
+	                                        </div>
+	                                        <div class="col-md-4">
+												<div class="form-group label-floating">
+													<label class="control-label">Country</label>
+													<input type="text" class="form-control" >
+												</div>
+	                                        </div>
+	                                        <div class="col-md-4">
+												<div class="form-group label-floating">
+													<label class="control-label">Postal Code</label>
+													<input type="text" class="form-control" >
+												</div>
+	                                        </div>
+	                                    </div>
+
+	                                    <div class="row">
+	                                        <div class="col-md-12">
+	                                            <div class="form-group">
+	                                                <label>About Me</label>
+													<div class="form-group label-floating">
+									    				<label class="control-label"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+								    					<textarea class="form-control" rows="5"></textarea>
+		                        					</div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+
+	                                    <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+	                                    <div class="clearfix"></div>
+	                                </form>
 	                            </div>
 	                        </div>
 	                    </div>
+						<div class="col-md-4">
+    						<div class="card card-profile">
+    							<div class="card-avatar">
+    								<a href="#pablo">
+    									<img class="img" src="../assets/img/faces/marc.jpg" />
+    								</a>
+    							</div>
 
-	                    <div class="col-md-12">
-	                        <div class="card card-plain">
-	                            <div class="card-header" data-background-color="purple">
-	                                <h4 class="title">Table on Plain Background</h4>
-	                                <p class="category">Here is a subtitle for this table</p>
-	                            </div>
-	                            <div class="card-content table-responsive">
-	                                <table class="table table-hover">
-	                                    <thead>
-	                                        <th>ID</th>
-	                                    	<th>Name</th>
-	                                    	<th>Salary</th>
-	                                    	<th>Country</th>
-	                                    	<th>City</th>
-	                                    </thead>
-	                                    <tbody>
-	                                        <tr>
-	                                        	<td>1</td>
-	                                        	<td>Dakota Rice</td>
-	                                        	<td>$36,738</td>
-	                                        	<td>Niger</td>
-	                                        	<td>Oud-Turnhout</td>
-	                                        </tr>
-	                                        <tr>
-	                                        	<td>2</td>
-	                                        	<td>Minerva Hooper</td>
-	                                        	<td>$23,789</td>
-	                                        	<td>Curaçao</td>
-	                                        	<td>Sinaai-Waas</td>
-	                                        </tr>
-	                                        <tr>
-	                                        	<td>3</td>
-	                                        	<td>Sage Rodriguez</td>
-	                                        	<td>$56,142</td>
-	                                        	<td>Netherlands</td>
-	                                        	<td>Baileux</td>
-	                                        </tr>
-	                                        <tr>
-	                                        	<td>4</td>
-	                                        	<td>Philip Chaney</td>
-	                                        	<td>$38,735</td>
-	                                        	<td>Korea, South</td>
-	                                        	<td>Overland Park</td>
-	                                        </tr>
-	                                        <tr>
-	                                        	<td>5</td>
-	                                        	<td>Doris Greene</td>
-	                                        	<td>$63,542</td>
-	                                        	<td>Malawi</td>
-	                                        	<td>Feldkirchen in Kärnten</td>
-	                                        </tr>
-	                                        <tr>
-	                                        	<td>6</td>
-	                                        	<td>Mason Porter</td>
-	                                        	<td>$78,615</td>
-	                                        	<td>Chile</td>
-	                                        	<td>Gloucester</td>
-	                                        </tr>
-	                                    </tbody>
-	                                </table>
-	                            </div>
-	                        </div>
-	                    </div>
+    							<div class="content">
+    								<h6 class="category text-gray">CEO / Co-Founder</h6>
+    								<h4 class="card-title">Alec Thompson</h4>
+    								<p class="card-content">
+    									Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+    								</p>
+    								<a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+    							</div>
+    						</div>
+		    			</div>
 	                </div>
 	            </div>
 	        </div>
