@@ -16,7 +16,7 @@ public class MBG {
         //当生成代码重复时，覆盖原代码
         boolean overwrite = true;
         //读取MBG配置文件
-        File configFile = new File("C:\\Users\\Administrator.SC-201904071224\\IdeaProjects\\prision_project\\src\\main\\resources\\mbg.xml");
+        File configFile = new File("C:\\Users\\Administrator.SC-201904071224\\IdeaProjects\\prision\\prision_project\\src\\main\\resources\\mbg.xml");
 
         // ...根据需要填写配置对象......
         ConfigurationParser cp = new ConfigurationParser(warnings);
