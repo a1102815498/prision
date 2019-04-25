@@ -5,7 +5,12 @@
 
 <generatorConfiguration>
 
-    <context id="DB2Tables" targetRuntime="MyBatis3Simple">
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+
+        <!--不生成注释-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"></property>
+        </commentGenerator>
 
         <!--数据库连接信息-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
@@ -21,7 +26,7 @@
         </javaTypeResolver>
 
         <!--javaBean指定生成位置-->
-        <javaModelGenerator targetPackage="club.zqg.prision.domain" targetProject=".\src\main\java\club\zqg\prision">
+        <javaModelGenerator targetPackage="club.zqg.prision.domain" targetProject=".\src\main\java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -32,7 +37,7 @@
         </sqlMapGenerator>
 
         <!--指定dao接口生成的位置，j即为mapper接口-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="club.zqg.prision.dao" targetProject=".\src\main\java\club\zqg\prision">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="club.zqg.prision.dao" targetProject=".\src\main\java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
