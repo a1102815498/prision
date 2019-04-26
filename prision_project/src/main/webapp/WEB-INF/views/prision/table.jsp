@@ -195,7 +195,7 @@
                                 </table>
 
                                 <%--分页--%>
-                                <div class="col-md-6 pull-right" >
+                                <div class="col-md-6 pull-right">
                                     <nav aria-label="Page navigation">
                                         <ul class="pagination">
                                             <li>
@@ -203,7 +203,8 @@
                                             </li>
                                             <c:if test="${pageInfo.hasPreviousPage}">
                                                 <li>
-                                                    <a href="${APP_PATH}/prisioner/list?pn=${pageInfo.pageNum -1 }" aria-label="Previous">
+                                                    <a href="${APP_PATH}/prisioner/list?pn=${pageInfo.pageNum -1 }"
+                                                       aria-label="Previous">
                                                         <span aria-hidden="true">&laquo;</span>
                                                     </a>
                                                 </li>
@@ -214,14 +215,16 @@
                                                     <li class="active"><a href="#">${page_Num}</a></li>
                                                 </c:if>
                                                 <c:if test="${page_Num != pageInfo.pageNum}">
-                                                    <li ><a href="${APP_PATH}/prisioner/list?pn=${page_Num}">${page_Num}</a></li>
+                                                    <li>
+                                                        <a href="${APP_PATH}/prisioner/list?pn=${page_Num}">${page_Num}</a>
+                                                    </li>
                                                 </c:if>
-
                                             </c:forEach>
 
                                             <c:if test="${pageInfo.hasNextPage}">
                                                 <li>
-                                                    <a href="${APP_PATH}/prisioner/list?pn=${pageInfo.pageNum + 1}" aria-label="Next">
+                                                    <a href="${APP_PATH}/prisioner/list?pn=${pageInfo.pageNum + 1}"
+                                                       aria-label="Next">
                                                         <span aria-hidden="true">&raquo;</span>
                                                     </a>
                                                 </li>
@@ -375,7 +378,7 @@
                     alert("请求成功" + data.prisionHome)
                 },
                 error: function (e) {
-                    alert("服务器异常"+e)
+                    alert("服务器异常" + e)
                 }
             });
         })

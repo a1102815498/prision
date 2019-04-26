@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="${APP_PATH}/admin/dispatchLoginPage">
                         <i class="material-icons">person</i>
                         <p>录入系统</p>
                     </a>
