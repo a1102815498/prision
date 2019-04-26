@@ -3,19 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <!--驼峰命名规则-->
+
+
     <settings>
+        <!--配置日志-->
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="useGeneratedKeys" value="true"/>
+        <setting name="defaultExecutorType" value="REUSE"/>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--驼峰命名规则-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+
     </settings>
 
-  <!--  &lt;!&ndash;别名&ndash;&gt;
-    <typeAliases>
-        <package name=""></package>
-    </typeAliases>-->
+
+    <!--  &lt;!&ndash;别名&ndash;&gt;
+      <typeAliases>
+          <package name=""></package>
+      </typeAliases>-->
     <!-- 注册pagehelper,注意位置，在别名后-->
     <plugins>
         <plugin interceptor="com.github.pagehelper.PageInterceptor">
-            <property name="reasonable" value="true" />
+            <property name="reasonable" value="true"/>
         </plugin>
     </plugins>
 </configuration>
