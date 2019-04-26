@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.zqg.prision.dao.PrisionerMapper">
+    <resultMap id="BaseResultMap" type="club.zqg.prision.domain.Prisioner">
+        <id column="prision_id" jdbcType="INTEGER" property="prisionId"/>
+        <result column="prision_name" jdbcType="VARCHAR" property="prisionName"/>
+        <result column="prision_age" jdbcType="SMALLINT" property="prisionAge"/>
+        <result column="prision_home" jdbcType="VARCHAR" property="prisionHome"/>
+        <result column="prision_card" jdbcType="VARCHAR" property="prisionCard"/>
+        <result column="prision_enter_date" jdbcType="DATE" property="prisionEnterDate"/>
+        <result column="prision_finsh_date" jdbcType="DATE" property="prisionFinshDate"/>
+        <result column="prision_danger_level_id" jdbcType="SMALLINT" property="prisionDangerLevelId"/>
+        <result column="prision_relative_tel" jdbcType="VARCHAR" property="prisionRelativeTel"/>
+        <result column="prision_police_id" jdbcType="INTEGER" property="prisionPoliceId"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    prision_id, prision_name, prision_age, prision_home, prision_card, prision_enter_date, 
+    prision_finsh_date, prision_danger_level_id, prision_relative_tel, prision_police_id
+  </sql>
+    <select id="selectByExample" parameterType="club.zqg.prision.domain.PrisionerExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from prision_prisioner
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from prision_prisioner
+        where prision_id = #{prisionId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from prision_prisioner
+    where prision_id = #{prisionId,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="club.zqg.prision.domain.PrisionerExample">
+        delete from prision_prisioner
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="club.zqg.prision.domain.Prisioner">
+    insert into prision_prisioner (prision_id, prision_name, prision_age, 
+      prision_home, prision_card, prision_enter_date, 
+      prision_finsh_date, prision_danger_level_id, prision_relative_tel, 
+      prision_police_id)
+    values (#{prisionId,jdbcType=INTEGER}, #{prisionName,jdbcType=VARCHAR}, #{prisionAge,jdbcType=SMALLINT}, 
+      #{prisionHome,jdbcType=VARCHAR}, #{prisionCard,jdbcType=VARCHAR}, #{prisionEnterDate,jdbcType=DATE}, 
+      #{prisionFinshDate,jdbcType=DATE}, #{prisionDangerLevelId,jdbcType=SMALLINT}, #{prisionRelativeTel,jdbcType=VARCHAR}, 
+      #{prisionPoliceId,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="club.zqg.prision.domain.Prisioner">
+        insert into prision_prisioner
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="prisionId != null">
+                prision_id,
+            </if>
+            <if test="prisionName != null">
+                prision_name,
+            </if>
+            <if test="prisionAge != null">
+                prision_age,
+            </if>
+            <if test="prisionHome != null">
+                prision_home,
+            </if>
+            <if test="prisionCard != null">
+                prision_card,
+            </if>
+            <if test="prisionEnterDate != null">
+                prision_enter_date,
+            </if>
+            <if test="prisionFinshDate != null">
+                prision_finsh_date,
+            </if>
+            <if test="prisionDangerLevelId != null">
+                prision_danger_level_id,
+            </if>
+            <if test="prisionRelativeTel != null">
+                prision_relative_tel,
+            </if>
+            <if test="prisionPoliceId != null">
+                prision_police_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="prisionId != null">
+                #{prisionId,jdbcType=INTEGER},
+            </if>
+            <if test="prisionName != null">
+                #{prisionName,jdbcType=VARCHAR},
+            </if>
+            <if test="prisionAge != null">
+                #{prisionAge,jdbcType=SMALLINT},
+            </if>
+            <if test="prisionHome != null">
+                #{prisionHome,jdbcType=VARCHAR},
+            </if>
+            <if test="prisionCard != null">
+                #{prisionCard,jdbcType=VARCHAR},
+            </if>
+            <if test="prisionEnterDate != null">
+                #{prisionEnterDate,jdbcType=DATE},
+            </if>
+            <if test="prisionFinshDate != null">
+                #{prisionFinshDate,jdbcType=DATE},
+            </if>
+            <if test="prisionDangerLevelId != null">
+                #{prisionDangerLevelId,jdbcType=SMALLINT},
+            </if>
+            <if test="prisionRelativeTel != null">
+                #{prisionRelativeTel,jdbcType=VARCHAR},
+            </if>
+            <if test="prisionPoliceId != null">
+                #{prisionPoliceId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="club.zqg.prision.domain.PrisionerExample" resultType="java.lang.Long">
+        select count(*) from prision_prisioner
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update prision_prisioner
+        <set>
+            <if test="record.prisionId != null">
+                prision_id = #{record.prisionId,jdbcType=INTEGER},
+            </if>
+            <if test="record.prisionName != null">
+                prision_name = #{record.prisionName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.prisionAge != null">
+                prision_age = #{record.prisionAge,jdbcType=SMALLINT},
+            </if>
+            <if test="record.prisionHome != null">
+                prision_home = #{record.prisionHome,jdbcType=VARCHAR},
+            </if>
+            <if test="record.prisionCard != null">
+                prision_card = #{record.prisionCard,jdbcType=VARCHAR},
+            </if>
+            <if test="record.prisionEnterDate != null">
+                prision_enter_date = #{record.prisionEnterDate,jdbcType=DATE},
+            </if>
+            <if test="record.prisionFinshDate != null">
+                prision_finsh_date = #{record.prisionFinshDate,jdbcType=DATE},
+            </if>
+            <if test="record.prisionDangerLevelId != null">
+                prision_danger_level_id = #{record.prisionDangerLevelId,jdbcType=SMALLINT},
+            </if>
+            <if test="record.prisionRelativeTel != null">
+                prision_relative_tel = #{record.prisionRelativeTel,jdbcType=VARCHAR},
+            </if>
+            <if test="record.prisionPoliceId != null">
+                prision_police_id = #{record.prisionPoliceId,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update prision_prisioner
+        set prision_id = #{record.prisionId,jdbcType=INTEGER},
+        prision_name = #{record.prisionName,jdbcType=VARCHAR},
+        prision_age = #{record.prisionAge,jdbcType=SMALLINT},
+        prision_home = #{record.prisionHome,jdbcType=VARCHAR},
+        prision_card = #{record.prisionCard,jdbcType=VARCHAR},
+        prision_enter_date = #{record.prisionEnterDate,jdbcType=DATE},
+        prision_finsh_date = #{record.prisionFinshDate,jdbcType=DATE},
+        prision_danger_level_id = #{record.prisionDangerLevelId,jdbcType=SMALLINT},
+        prision_relative_tel = #{record.prisionRelativeTel,jdbcType=VARCHAR},
+        prision_police_id = #{record.prisionPoliceId,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="club.zqg.prision.domain.Prisioner">
+        update prision_prisioner
+        <set>
+            <if test="prisionName != null">
+                prision_name = #{prisionName,jdbcType=VARCHAR},
+            </if>
+            <if test="prisionAge != null">
+                prision_age = #{prisionAge,jdbcType=SMALLINT},
+            </if>
+            <if test="prisionHome != null">
+                prision_home = #{prisionHome,jdbcType=VARCHAR},
+            </if>
+            <if test="prisionCard != null">
+                prision_card = #{prisionCard,jdbcType=VARCHAR},
+            </if>
+            <if test="prisionEnterDate != null">
+                prision_enter_date = #{prisionEnterDate,jdbcType=DATE},
+            </if>
+            <if test="prisionFinshDate != null">
+                prision_finsh_date = #{prisionFinshDate,jdbcType=DATE},
+            </if>
+            <if test="prisionDangerLevelId != null">
+                prision_danger_level_id = #{prisionDangerLevelId,jdbcType=SMALLINT},
+            </if>
+            <if test="prisionRelativeTel != null">
+                prision_relative_tel = #{prisionRelativeTel,jdbcType=VARCHAR},
+            </if>
+            <if test="prisionPoliceId != null">
+                prision_police_id = #{prisionPoliceId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where prision_id = #{prisionId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="club.zqg.prision.domain.Prisioner">
+    update prision_prisioner
+    set prision_name = #{prisionName,jdbcType=VARCHAR},
+      prision_age = #{prisionAge,jdbcType=SMALLINT},
+      prision_home = #{prisionHome,jdbcType=VARCHAR},
+      prision_card = #{prisionCard,jdbcType=VARCHAR},
+      prision_enter_date = #{prisionEnterDate,jdbcType=DATE},
+      prision_finsh_date = #{prisionFinshDate,jdbcType=DATE},
+      prision_danger_level_id = #{prisionDangerLevelId,jdbcType=SMALLINT},
+      prision_relative_tel = #{prisionRelativeTel,jdbcType=VARCHAR},
+      prision_police_id = #{prisionPoliceId,jdbcType=INTEGER}
+    where prision_id = #{prisionId,jdbcType=INTEGER}
+  </update>
+
+    <!--联合结果集-->
+    <resultMap id="ResultMapWithOtherInfo" type="club.zqg.prision.domain.Prisioner">
+        <id column="prision_id" jdbcType="INTEGER" property="prisionId"/>
+        <result column="prision_name" jdbcType="VARCHAR" property="prisionName"/>
+        <result column="prision_age" jdbcType="SMALLINT" property="prisionAge"/>
+        <result column="prision_home" jdbcType="VARCHAR" property="prisionHome"/>
+        <result column="prision_card" jdbcType="VARCHAR" property="prisionCard"/>
+        <result column="prision_enter_date" jdbcType="DATE" property="prisionEnterDate"/>
+        <result column="prision_finsh_date" jdbcType="DATE" property="prisionFinshDate"/>
+        <result column="prision_danger_level_id" jdbcType="SMALLINT" property="prisionDangerLevelId"/>
+        <result column="prision_relative_tel" jdbcType="VARCHAR" property="prisionRelativeTel"/>
+        <result column="prision_police_id" jdbcType="INTEGER" property="prisionPoliceId"/>
+        <association property="dangerlevel" javaType="club.zqg.prision.domain.Dangerlevel">
+            <id column="danger_level_id" property="dangerLevelId"></id>
+            <result column="danger_level_name" property="dangerLevelName"></result>
+        </association>
+        <association property="prisionPolice" javaType="club.zqg.prision.domain.PrisionPolice">
+            <id column="police_id" property="policeId"></id>
+            <result column="police_name" property="policeName"></result>
+        </association>
+    </resultMap>
+
+    <sql id="WithOtherColumnList">
+
+    </sql>
+
+    <!--联合 查询 -->
+    <select id="selectDetailInfo" resultMap="ResultMapWithOtherInfo">
+        SELECT prision_id,prision_name,prision_age,prision_home,prision_enter_date,prision_finsh_date,danger.danger_level_name,police.police_name
+        from prision_prisioner prision
+        INNER JOIN danger_level danger
+        on prision.prision_danger_level_id	= danger.danger_level_id
+        INNER JOIN prision_police police
+        on prision.prision_police_id = police.police_id
+    </select>
+
+    <!--服刑总人数查询-->
+    <select id="selectAll" resultType="java.lang.Integer">
+        select count(prision_id) from prision_prisioner
+    </select>
+    
+    <!--危险犯人查询-->
+    <select id="selectDangerPrisioner" resultType="java.lang.Integer">
+       SELECT count(prision_id) from prision_prisioner where prision_danger_level_id>1
+    </select>
+
+    <!--即将出狱犯人 （注意转义）-->
+    <select id="selectFinishPrisioner" resultType="java.lang.Integer">
+        select count(prision_finsh_date) from prision_prisioner where TIMESTAMPDIFF(YEAR,now(),prision_finsh_date) &lt;1
+    </select>
+
+</mapper>

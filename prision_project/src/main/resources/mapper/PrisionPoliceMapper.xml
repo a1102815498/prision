@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.zqg.prision.dao.PrisionPoliceMapper">
+  <resultMap id="BaseResultMap" type="club.zqg.prision.domain.PrisionPolice">
+    <id column="police_id" jdbcType="INTEGER" property="policeId" />
+    <result column="police_name" jdbcType="VARCHAR" property="policeName" />
+    <result column="rank_id" jdbcType="SMALLINT" property="rankId" />
+    <result column="area_id" jdbcType="SMALLINT" property="areaId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    police_id, police_name, rank_id, area_id
+  </sql>
+  <select id="selectByExample" parameterType="club.zqg.prision.domain.PrisionPoliceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from prision_police
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prision_police
+    where police_id = #{policeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from prision_police
+    where police_id = #{policeId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="club.zqg.prision.domain.PrisionPoliceExample">
+    delete from prision_police
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="club.zqg.prision.domain.PrisionPolice">
+    insert into prision_police (police_id, police_name, rank_id, 
+      area_id)
+    values (#{policeId,jdbcType=INTEGER}, #{policeName,jdbcType=VARCHAR}, #{rankId,jdbcType=SMALLINT}, 
+      #{areaId,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="club.zqg.prision.domain.PrisionPolice">
+    insert into prision_police
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="policeId != null">
+        police_id,
+      </if>
+      <if test="policeName != null">
+        police_name,
+      </if>
+      <if test="rankId != null">
+        rank_id,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="policeId != null">
+        #{policeId,jdbcType=INTEGER},
+      </if>
+      <if test="policeName != null">
+        #{policeName,jdbcType=VARCHAR},
+      </if>
+      <if test="rankId != null">
+        #{rankId,jdbcType=SMALLINT},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="club.zqg.prision.domain.PrisionPoliceExample" resultType="java.lang.Long">
+    select count(*) from prision_police
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update prision_police
+    <set>
+      <if test="record.policeId != null">
+        police_id = #{record.policeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.policeName != null">
+        police_name = #{record.policeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rankId != null">
+        rank_id = #{record.rankId,jdbcType=SMALLINT},
+      </if>
+      <if test="record.areaId != null">
+        area_id = #{record.areaId,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update prision_police
+    set police_id = #{record.policeId,jdbcType=INTEGER},
+      police_name = #{record.policeName,jdbcType=VARCHAR},
+      rank_id = #{record.rankId,jdbcType=SMALLINT},
+      area_id = #{record.areaId,jdbcType=SMALLINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="club.zqg.prision.domain.PrisionPolice">
+    update prision_police
+    <set>
+      <if test="policeName != null">
+        police_name = #{policeName,jdbcType=VARCHAR},
+      </if>
+      <if test="rankId != null">
+        rank_id = #{rankId,jdbcType=SMALLINT},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where police_id = #{policeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="club.zqg.prision.domain.PrisionPolice">
+    update prision_police
+    set police_name = #{policeName,jdbcType=VARCHAR},
+      rank_id = #{rankId,jdbcType=SMALLINT},
+      area_id = #{areaId,jdbcType=SMALLINT}
+    where police_id = #{policeId,jdbcType=INTEGER}
+  </update>
+
+  <!--狱警人数查询-->
+  <select id="selectAll" resultType="java.lang.Integer">
+    select count(police_id) from prision_police
+  </select>
+</mapper>
