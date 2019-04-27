@@ -46,15 +46,12 @@ public class PrisionAdminHandle {
         }
     }
 
-    // 快捷查询
+    // 快捷查询  [这个返回的是一个list集合 传过去下标就是键值 ]
     @ResponseBody
     @RequestMapping("/quickQuery")
     public List<Prisioner> quickQuery(@RequestParam(value = "name")String prisionerName){
         System.out.println("接受的参数"+prisionerName);
         List<Prisioner> quickResult = adminService.findQuickResult(prisionerName);
-        for (Prisioner prisioner:quickResult){
-            System.out.println(prisioner.getPrisionPolice().getPoliceName());
-        }
         return quickResult;
     }
 
