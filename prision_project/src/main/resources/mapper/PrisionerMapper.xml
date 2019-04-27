@@ -331,7 +331,7 @@
     <select id="selectAll" resultType="java.lang.Integer">
         select count(prision_id) from prision_prisioner
     </select>
-    
+
     <!--危险犯人查询-->
     <select id="selectDangerPrisioner" resultType="java.lang.Integer">
        SELECT count(prision_id) from prision_prisioner where prision_danger_level_id>1
@@ -343,15 +343,20 @@
     </select>
 
 
-     <!--快捷查询-->
-    <select id="findQuickResult" parameterType="java.lang.String" resultMap="ResultMapWithOtherInfo">
-        SELECT prision_id,prision_name,prision_age,prision_home,prision_enter_date,prision_finsh_date,danger.danger_level_name,police.police_name
+    <!--快捷查询-->
+    <select id="findQuickResult" parameterType="String" resultMap="ResultMapWithOtherInfo">
+        SELECT
+        prision_id,prision_name,prision_age,prision_home,prision_enter_date,prision_finsh_date,danger.danger_level_name,police.police_name
         from prision_prisioner prision
         INNER JOIN danger_level danger
-        on prision.prision_danger_level_id	= danger.danger_level_id
+        on prision.prision_danger_level_id = danger.danger_level_id
         INNER JOIN prision_police police
         on prision.prision_police_id = police.police_id
-        where prision_name = #{prisionName}
+        <where>
+            <if test="prisionName!=null">
+                prision.prision_name = #{prisionName}
+            </if>
+        </where>
     </select>
 
 </mapper>
