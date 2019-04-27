@@ -20,6 +20,8 @@ public interface PrisionerMapper {
 
     List<Prisioner> selectByExample(PrisionerExample example);
 
+    List<Prisioner> findQuickResult(String prisionName); // 快捷查询
+
     List<Prisioner> selectDetailInfo(); // 犯人信息查询
 
     int selectAll(); // 查询所有服刑人数
