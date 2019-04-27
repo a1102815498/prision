@@ -342,4 +342,16 @@
         select count(prision_finsh_date) from prision_prisioner where TIMESTAMPDIFF(YEAR,now(),prision_finsh_date) &lt;1
     </select>
 
+
+     <!--快捷查询-->
+    <select id="findQuickResult" parameterType="java.lang.String" resultMap="ResultMapWithOtherInfo">
+        SELECT prision_id,prision_name,prision_age,prision_home,prision_enter_date,prision_finsh_date,danger.danger_level_name,police.police_name
+        from prision_prisioner prision
+        INNER JOIN danger_level danger
+        on prision.prision_danger_level_id	= danger.danger_level_id
+        INNER JOIN prision_police police
+        on prision.prision_police_id = police.police_id
+        where prision_name = #{prisionName}
+    </select>
+
 </mapper>
