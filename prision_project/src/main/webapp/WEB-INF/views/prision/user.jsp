@@ -4,6 +4,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <script src="http://www.google.com/recaptcha/api.js?onload=myCallBack&render=explicit" async defer></script>
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png"/>
     <link rel="icon" type="image/png" href="../assets/img/favicon.png"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -140,7 +142,7 @@
                         </li>
                     </ul>
 
-                    <form class="navbar-form navbar-right" role="search">
+                    <form class="navbar-form navbar-right" id="form_quick_query" role="search">
                         <div class="form-group  is-empty">
                             <input type="text" id="prisionName" class="form-control" placeholder="快捷查询">
                             <span class="material-input"></span>
@@ -368,11 +370,13 @@
         })
 
         // 快捷查询
-        $("#search_prisioner").click(function () {
-
-
+        $("#form_quick_query").submit(function () {
+            if($("#prisionName").val().trim()!=""){
+                quickQuery();
+            }
+            return false; // 阻止表单提交
         })
-        console.log("获取的犯人姓名"+$("#prisionName").val());
+
 
         // 快捷查询
         function quickQuery () {
@@ -380,14 +384,21 @@
                 url:"${APP_PATH}/admin/quickQuery",
                 data:{name:$("#prisionName").val()},
                 type:"GET",
-                success:function (data) {
-                    console.log("服务器正常返回"+data);
-                    return false;
+                success:function (data) { //data 接受的是一个 list集合 键值为下标 ，
+                    $("#card-content").empty(); //
+                    //console.log($(data))
+                    $.each(data,function (index,value) {
+
+
+
+                    })
+
+                   // console.log("服务器正常返回"+data[0].prisionName);
                 },
                 error:function (e) {
                     console.log("服务器异常"+e)
-                    return false;
-                }
+                },
+                dataType:"json"
             })
         }
 
