@@ -5,7 +5,6 @@ import club.zqg.prision.dao.PrisionAdminMapper;
 import club.zqg.prision.dao.PrisionNewsMapper;
 import club.zqg.prision.dao.PrisionerMapper;
 import club.zqg.prision.domain.PrisionAdmin;
-import club.zqg.prision.domain.PrisionAdminExample;
 import club.zqg.prision.domain.Prisioner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -59,6 +58,8 @@ public class SpringJunitTest {
     }
 
 
-
-
+    @Test
+    public void quickQuery(){
+        System.out.println(prisionerMapper.findQuickResult("zqg"));
+    }
 }
