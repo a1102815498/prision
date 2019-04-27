@@ -43,6 +43,8 @@ public class SpringJunitTest {
         }
     }
 
+
+
     // 管理员测试
     @Autowired
     PrisionAdminMapper adminMapper;
@@ -55,4 +57,8 @@ public class SpringJunitTest {
         PrisionAdmin prisionAdmin1 = adminMapper.selectSingle(prisionAdmin);
         System.out.println(prisionAdmin1);
     }
+
+
+
+
 }
